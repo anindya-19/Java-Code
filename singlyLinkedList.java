@@ -47,15 +47,13 @@ public class singlyLinkedList {
     }
 
     public void insertAtPosition(int position, int data) {
-        if(position < 1 || position > size + 1){
+        if (position < 1 || position > size + 1) {
             System.out.println("Position is invalid!");
             return;
-        }
-        else if(position == 1){
+        } else if (position == 1) {
             insertAtHead(data);
             return;
-        }
-        else if(position == size + 1){
+        } else if (position == size + 1) {
             insertAtTail(data);
             return;
         }
@@ -69,6 +67,38 @@ public class singlyLinkedList {
         prevNode.next = newNode;
 
         size++;
+    }
+
+    public void printList() {
+        node temp = head;
+        while (temp != null) {
+            System.out.println(temp.data + "->");
+            temp = temp.next;
+        }
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int getHead() {
+        if (isEmpty()) {
+            System.out.println("Head is empty");
+            return -1;
+        }
+        return head.data;
+    }
+
+    public int getTail() {
+        if (isEmpty()) {
+            System.out.println("Tail is empty");
+            return -1;
+        }
+        return tail.data;
     }
 
     public static void main(String args[]) {
