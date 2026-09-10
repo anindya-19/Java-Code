@@ -65,24 +65,29 @@ public class singlyLinkedList {
         node newNode = new node(data);
         newNode.next = prevNode.next;
         prevNode.next = newNode;
-
+        
         size++;
+    }
+    
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public void printList() {
+        if(isEmpty()){
+            System.out.println("The linked list is empty");
+        }
         node temp = head;
         while (temp != null) {
-            System.out.println(temp.data + "->");
+            System.out.print(temp.data + "->");
             temp = temp.next;
         }
+        System.out.print("NULL");
+        System.out.println();
     }
 
     public int getSize() {
         return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     public int getHead() {
@@ -101,7 +106,31 @@ public class singlyLinkedList {
         return tail.data;
     }
 
-    public static void main(String args[]) {
+    
 
+
+    public static void main(String args[]) {
+        singlyLinkedList myList = new singlyLinkedList();
+        if(myList.isEmpty()){
+            System.out.println("The linked list is empty");
+        }
+        myList.insertAtHead(20);    
+        myList.printList();
+
+        myList.insertAtHead(30);
+        myList.insertAtHead(40);
+        myList.insertAtHead(50);
+
+        myList.insertAtTail(100);
+        myList.insertAtTail(110);
+
+        myList.insertAtPosition(1, 69);
+        myList.insertAtPosition(8, 200);
+        myList.insertAtPosition(3, 500);
+        myList.printList();
+        
+        System.out.println(myList.getHead());
+        System.out.println(myList.getTail());
+        
     }
 }
