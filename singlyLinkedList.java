@@ -119,6 +119,21 @@ public class singlyLinkedList {
         return false;
     }
 
+    public int position(int target){
+        node temp = head;
+        int position = 1;
+        while(temp != null){
+            if(temp.data == target){
+                return position;
+            }
+            else{
+                temp = temp.next;
+                position++;
+            }
+        }
+        return -1;
+    }
+
 
     public static void main(String args[]) {
         singlyLinkedList myList = new singlyLinkedList();
@@ -143,6 +158,8 @@ public class singlyLinkedList {
         System.out.println(myList.getHead());
         System.out.println(myList.getTail());
         System.out.println(myList.search(110));
+
+        System.out.println(myList.position(500));
         
     }
 }
