@@ -65,16 +65,16 @@ public class singlyLinkedList {
         node newNode = new node(data);
         newNode.next = prevNode.next;
         prevNode.next = newNode;
-        
+
         size++;
     }
-    
+
     public boolean isEmpty() {
         return size == 0;
     }
 
     public void printList() {
-        if(isEmpty()){
+        if (isEmpty()) {
             System.out.println("The linked list is empty");
         }
         node temp = head;
@@ -106,27 +106,25 @@ public class singlyLinkedList {
         return tail.data;
     }
 
-    public boolean search(int target){
+    public boolean search(int target) {
         node temp = head;
-        while(temp != null){
-            if(temp.data == target){
+        while (temp != null) {
+            if (temp.data == target) {
                 return true;
-            }
-            else{
+            } else {
                 temp = temp.next;
             }
         }
         return false;
     }
 
-    public int position(int target){
+    public int position(int target) {
         node temp = head;
         int position = 1;
-        while(temp != null){
-            if(temp.data == target){
+        while (temp != null) {
+            if (temp.data == target) {
                 return position;
-            }
-            else{
+            } else {
                 temp = temp.next;
                 position++;
             }
@@ -134,13 +132,49 @@ public class singlyLinkedList {
         return -1;
     }
 
+    public void updateAtPosition(int position, int newData) {
+        if (position < 1 || position > size) {
+            System.out.println("Invalid position to update linked list");
+            return;
+        }
+        node temp = head;
+        int tempPosition = 1;
+        while (tempPosition != position) {
+            temp = temp.next;
+            tempPosition++;
+        }
+        temp.data = newData;
+
+    }
+
+    public void updateValues(int oldData, int newData) {
+        node temp = head;
+        while (temp != null) {
+            if (temp.data == oldData) {
+                temp.data = newData;
+            }
+            temp = temp.next;
+        }
+    }
+
+    public boolean updateFirstOcuurenceValue(int oldValue, int newValue){
+        node temp = head;
+        while(temp != null){
+            if(temp.data == oldValue){
+                temp.data = newValue;
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
 
     public static void main(String args[]) {
         singlyLinkedList myList = new singlyLinkedList();
-        if(myList.isEmpty()){
+        if (myList.isEmpty()) {
             System.out.println("The linked list is empty");
         }
-        myList.insertAtHead(20);    
+        myList.insertAtHead(20);
         myList.printList();
 
         myList.insertAtHead(30);
@@ -154,12 +188,23 @@ public class singlyLinkedList {
         myList.insertAtPosition(8, 200);
         myList.insertAtPosition(3, 500);
         myList.printList();
-        
+
         System.out.println(myList.getHead());
         System.out.println(myList.getTail());
         System.out.println(myList.search(110));
 
         System.out.println(myList.position(500));
-        
+
+        myList.updateAtPosition(9, 959);
+        myList.updateAtPosition(3, 50);
+        myList.updateAtPosition(6, 50);
+        myList.printList();
+
+        myList.updateValues(50, 598);
+        myList.printList();
+
+        myList.updateFirstOcuurenceValue(598, 50);
+        myList.printList();
+
     }
 }
