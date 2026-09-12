@@ -157,16 +157,75 @@ public class singlyLinkedList {
         }
     }
 
-    public boolean updateFirstOcuurenceValue(int oldValue, int newValue){
+    public boolean updateFirstOcuurenceValue(int oldValue, int newValue) {
         node temp = head;
-        while(temp != null){
-            if(temp.data == oldValue){
+        while (temp != null) {
+            if (temp.data == oldValue) {
                 temp.data = newValue;
                 return true;
             }
             temp = temp.next;
         }
         return false;
+    }
+
+    public void deleteHead() {
+        if (size == 0) {
+            System.out.println("The linked list is empty!!");
+            return;
+        }
+        head = head.next;
+        size--;
+        if (head == null) {
+            tail = null;
+        }
+    }
+
+    public void deleteTail() {
+        if (size == 0) {
+            System.out.println("The linked list is empty");
+            return;
+        }
+        if (size == 1) {
+            head = null;
+            tail = null;
+            size = 0;
+            return;
+        }
+        node temp = head;
+        for (int i = 1; i <= size - 2; i++) {
+            temp = temp.next;
+        }
+        temp.next = null;
+        tail = temp;
+        size--;
+
+    }
+
+    public void deleteAtPosition(int position){
+        if(position < 1 || position > size){
+            System.out.println("Invalid position !!");
+            return;
+        }
+        if(position == 1){
+            deleteHead();
+            return;
+        }
+        if(position == size){
+            deleteTail();
+            return;
+        }
+        node prev = head,current;
+        for (int i = 1; i <= position - 2; i++) {
+            prev = prev.next;
+        }
+        current = prev.next;
+
+        prev.next = current.next;
+        current.next = null;
+
+        size--;
+        
     }
 
     public static void main(String args[]) {
@@ -205,6 +264,15 @@ public class singlyLinkedList {
 
         myList.updateFirstOcuurenceValue(598, 50);
         myList.printList();
+        System.out.println("After deleting head:-");
+        myList.deleteHead();
+        myList.printList();
+        System.out.println("After deleting the last node:-");
+        myList.deleteTail();
+        myList.printList();
+        System.out.println("The size of the linked list now: " + myList.getSize());
 
+        myList.deleteAtPosition(4);
+        myList.printList();
     }
 }
