@@ -202,20 +202,20 @@ public class singlyLinkedList {
 
     }
 
-    public void deleteAtPosition(int position){
-        if(position < 1 || position > size){
+    public void deleteAtPosition(int position) {
+        if (position < 1 || position > size) {
             System.out.println("Invalid position !!");
             return;
         }
-        if(position == 1){
+        if (position == 1) {
             deleteHead();
             return;
         }
-        if(position == size){
+        if (position == size) {
             deleteTail();
             return;
         }
-        node prev = head,current;
+        node prev = head, current;
         for (int i = 1; i <= position - 2; i++) {
             prev = prev.next;
         }
@@ -225,7 +225,37 @@ public class singlyLinkedList {
         current.next = null;
 
         size--;
-        
+
+    }
+
+    public boolean deleteValueFirstOccurence(int target) {
+        if (size == 0) {
+            System.out.println("Linked list is empty, no nodes to delete!!");
+            return false;
+        }
+        if (head.data == target) {
+            deleteHead();
+            return true;
+        }
+        node prev = head;
+        node current = head.next;
+
+        while (current != null) {
+            if (current.data == target) {
+
+                prev.next = current.next;
+
+                if (tail == current) {
+                    tail = prev;
+                }
+                current.next = null;
+                size--;
+                return true;
+            }
+            prev = current;
+            current = current.next;
+        }
+        return false;
     }
 
     public static void main(String args[]) {
@@ -273,6 +303,9 @@ public class singlyLinkedList {
         System.out.println("The size of the linked list now: " + myList.getSize());
 
         myList.deleteAtPosition(4);
+        myList.printList();
+
+        myList.deleteValueFirstOccurence(40);
         myList.printList();
     }
 }
