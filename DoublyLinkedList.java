@@ -48,6 +48,37 @@ public class DoublyLinkedList {
         }
         size++;
     }
+    public void insertAtPosition(int data, int position){
+        if(position < 1 || position > size + 1){
+            System.out.println("Invalid position!");
+            return;
+        }
+        if(position == 1){
+            insertAtHead(data);
+            return;
+        }
+        if(position == size + 1){
+            insertAtTail(data);
+            return;
+        }
+        Node prevNode = head;
+        for (int i = 1; i <= position - 2; i++) {
+            prevNode = prevNode.next;
+        }
+
+        Node newNode = new Node(data);
+        Node nextNode = prevNode.next;
+
+        newNode.prev = prevNode;
+        newNode.next = nextNode;
+
+        nextNode.prev = newNode;
+
+        prevNode.next = newNode;
+
+        size++;
+
+    }
 
     public static void main(String[] args) {
 
