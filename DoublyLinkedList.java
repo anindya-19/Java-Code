@@ -100,19 +100,106 @@ public class DoublyLinkedList {
     }
 
     public boolean searchInLL(int target) {
-        if(size == 0){
+        if (size == 0) {
             System.out.println("The linked list is empty!!");
             return false;
         }
         Node temp = head;
-        while(temp != null){
-            if(temp.data == target){
-                System.out.println(target + "found");
+        while (temp != null) {
+            if (temp.data == target) {
                 return true;
             }
             temp = temp.next;
         }
         return false;
+    }
+
+    public void updateValues(int oldValue, int newValue) {
+        if(size == 0){
+            System.out.println("Empty linked list!!");
+            return;
+        }
+        Node temp = head;
+        while(temp != null){
+            if(temp.data == oldValue){
+                temp.data = newValue;
+            }
+            temp = temp.next;
+        }
+    }
+
+    public void deleteHead() {
+        if (size == 0) {
+            System.out.println("Linked list is already empty!!");
+            return;
+        }
+        if (size == 1) {
+            head = null;
+            tail = null;
+            // important to decrease the size
+            size = 0;
+            return;
+        }
+
+        head = head.next;
+        head.prev = null;
+
+        size--;
+    }
+
+    public void deleteTail() {
+        if (size == 0) {
+            System.out.println("The linked list is empty!!");
+            return;
+        }
+        if (size == 1) {
+            head = null;
+            tail = null;
+            size--;
+            return;
+        }
+
+        tail = tail.prev;
+        tail.next = null;
+
+        size--;
+
+    }
+
+    public void deleteAtPosition(int position) {
+        if(position < 1 || position > size){
+            if(size == 0){
+                System.out.println("The linked list is empty!!");
+            }
+            else{
+                System.out.println("Invalid position!");
+            }
+            return;
+        }
+        if(position == 1){
+            deleteHead();
+            return;
+        }
+        if(position == size){
+            deleteTail();
+            return;
+        }
+
+        Node prevNode = head;
+        for (int i = 1; i <= position - 2; i++) {
+            prevNode = prevNode.next;
+        }
+        Node currNode = prevNode.next;
+        Node nextNode = currNode.next;
+
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
+
+        //Good practice, although technically Java's garbage collector doesn't require you to do this once the node is no longer reachable from the list.
+        currNode.next = null;
+        currNode.prev = null;
+
+        size--;
     }
 
     public static void main(String[] args) {
@@ -127,9 +214,25 @@ public class DoublyLinkedList {
         myList.printList();
 
         myList.insertAtPosition(40, 4);
+        myList.insertAtPosition(40, 4);
+        myList.insertAtPosition(40, 4);
         myList.printList();
-        myList.printBackward();
+        // myList.printBackward();
         System.out.println(myList.size);
+
+        System.out.println(myList.searchInLL(30));
+
+        myList.deleteHead();
+        myList.printList();
+
+        myList.deleteTail();
+        myList.printList();
+
+        myList.deleteAtPosition(1);
+        myList.printList();
+
+        myList.updateValues(40, 400);
+        myList.printList();
 
     }
 }
