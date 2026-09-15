@@ -22,18 +22,18 @@ public class DoublyLinkedList {
         this.size = 0;
     }
 
-    public void printList(){
+    public void printList() {
         Node temp = head;
-        while(temp != null){
+        while (temp != null) {
             System.out.print(temp.data + "->");
             temp = temp.next;
         }
         System.out.print("NULL \n");
     }
 
-    public void printBackward(){
+    public void printBackward() {
         Node temp = tail;
-        while(temp != null){
+        while (temp != null) {
             System.out.print(temp.data + "->");
             temp = temp.prev;
         }
@@ -66,16 +66,17 @@ public class DoublyLinkedList {
         }
         size++;
     }
-    public void insertAtPosition(int data, int position){
-        if(position < 1 || position > size + 1){
+
+    public void insertAtPosition(int data, int position) {
+        if (position < 1 || position > size + 1) {
             System.out.println("Invalid position!");
             return;
         }
-        if(position == 1){
+        if (position == 1) {
             insertAtHead(data);
             return;
         }
-        if(position == size + 1){
+        if (position == size + 1) {
             insertAtTail(data);
             return;
         }
@@ -98,22 +99,37 @@ public class DoublyLinkedList {
 
     }
 
+    public boolean searchInLL(int target) {
+        if(size == 0){
+            System.out.println("The linked list is empty!!");
+            return false;
+        }
+        Node temp = head;
+        while(temp != null){
+            if(temp.data == target){
+                System.out.println(target + "found");
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList myList = new DoublyLinkedList();
         myList.insertAtHead(30);
         myList.insertAtHead(20);
         myList.insertAtHead(10);
         myList.printList();
-        
+
         myList.insertAtTail(100);
         myList.insertAtTail(120);
         myList.printList();
-        
+
         myList.insertAtPosition(40, 4);
         myList.printList();
         myList.printBackward();
         System.out.println(myList.size);
-        
 
     }
 }
