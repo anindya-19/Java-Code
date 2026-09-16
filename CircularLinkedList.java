@@ -13,12 +13,30 @@ public class CircularLinkedList {
     private Node tail;
     private int size;
 
-    CircularLinkedList(){
+    public CircularLinkedList(){
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
 
+    public void insertAtHead(int data){
+
+        Node newNode = new Node(data);
+
+        if(size == 0){
+            head = newNode;
+            tail = newNode;
+
+            tail.next = head;
+        }
+        else{
+            newNode.next = head;
+            head = newNode;
+
+            tail.next = head;
+        }
+        size++;
+    }
 
 
     public static void main(String[] args) {
