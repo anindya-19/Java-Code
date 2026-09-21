@@ -19,6 +19,22 @@ public class CircularLinkedList {
         this.size = 0;
     }
 
+    public void printList() {
+        if (size == 0) {
+            System.out.println("Circular linked list is empty!!");
+            return;
+        }
+
+        Node temp = head;
+
+        do {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        } while (temp != head);
+
+        System.out.println();
+    }
+
     public void insertAtHead(int data) {
 
         Node newNode = new Node(data);
@@ -52,17 +68,17 @@ public class CircularLinkedList {
         }
         size++;
     }
-    
-    public void insertAtPosition(int position, int data){
+
+    public void insertAtPosition(int position, int data) {
         if (position < 1 || position > size + 1) {
             System.out.println("Invalid position!!");
             return;
         }
-        if(position == 1){
+        if (position == 1) {
             insertAtHead(data);
             return;
         }
-        if(position == size + 1){
+        if (position == size + 1) {
             insertAtTail(data);
             return;
         }
@@ -78,6 +94,73 @@ public class CircularLinkedList {
 
         size++;
 
+    }
+    public void deleteHead(){
+        if(size == 0){
+            System.out.println("Empty linkedlist!!");
+            return;
+        }
+        if(size == 1){
+            head.next = null;
+            head = null;
+            tail = null;
+            size = 0;
+            return;
+        }
+        
+        Node temp = head;
+        head = head.next;
+
+        temp.next = null;
+
+        tail.next = head;
+
+        size--;
+    }
+
+    public void deleteTail(){
+        if(size == 0){
+            System.out.println("Empty linked list!!");
+            return;
+        }
+        if(size == 1){
+            head.next = null;
+            head = null;
+            tail = null;
+            size = 0;
+            return;
+        }
+
+        Node prevNode = head;
+        for (int i = 1; i <= size - 2; i++) {
+            prevNode = prevNode.next;
+        }
+
+        prevNode.next = head;
+        tail.next = null;
+        tail = prevNode;
+
+        size--;
+
+    }
+
+    public boolean search(int target) {
+        if (size == 0) {
+            System.out.println("empty linked list!");
+            return false;
+        }
+        Node temp = head;
+        do {
+
+            if (temp.data == target) {
+                return true;
+            }
+
+            temp = temp.next;
+
+        } while (temp != head);
+
+        return false;
     }
 
     public static void main(String[] args) {
