@@ -52,6 +52,33 @@ public class CircularLinkedList {
         }
         size++;
     }
+    
+    public void insertAtPosition(int position, int data){
+        if (position < 1 || position > size + 1) {
+            System.out.println("Invalid position!!");
+            return;
+        }
+        if(position == 1){
+            insertAtHead(data);
+            return;
+        }
+        if(position == size + 1){
+            insertAtTail(data);
+            return;
+        }
+        Node newNode = new Node(data);
+        Node previousNode = head;
+
+        for (int i = 1; i <= position - 2; i++) {
+            previousNode = previousNode.next;
+        }
+
+        newNode.next = previousNode.next;
+        previousNode.next = newNode;
+
+        size++;
+
+    }
 
     public static void main(String[] args) {
 
