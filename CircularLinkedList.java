@@ -32,14 +32,14 @@ public class CircularLinkedList {
             temp = temp.next;
         } while (temp != head);
 
-        System.out.println();
+        System.out.println("HEAD");
     }
 
     public void insertAtHead(int data) {
 
         Node newNode = new Node(data);
 
-        if (size == 0) {
+        if (isEmpty()) {
             head = newNode;
             tail = newNode;
 
@@ -55,7 +55,7 @@ public class CircularLinkedList {
 
     public void insertAtTail(int data) {
         Node newNode = new Node(data);
-        if (size == 0) {
+        if (isEmpty()) {
             head = newNode;
             tail = newNode;
 
@@ -95,19 +95,20 @@ public class CircularLinkedList {
         size++;
 
     }
-    public void deleteHead(){
-        if(size == 0){
+
+    public void deleteHead() {
+        if (isEmpty()) {
             System.out.println("Empty linkedlist!!");
             return;
         }
-        if(size == 1){
+        if (size == 1) {
             head.next = null;
             head = null;
             tail = null;
             size = 0;
             return;
         }
-        
+
         Node temp = head;
         head = head.next;
 
@@ -118,12 +119,12 @@ public class CircularLinkedList {
         size--;
     }
 
-    public void deleteTail(){
-        if(size == 0){
+    public void deleteTail() {
+        if (isEmpty()) {
             System.out.println("Empty linked list!!");
             return;
         }
-        if(size == 1){
+        if (size == 1) {
             head.next = null;
             head = null;
             tail = null;
@@ -144,8 +145,35 @@ public class CircularLinkedList {
 
     }
 
+    public void deleteAtPosition(int position) {
+        if(position < 1 || position > size){
+            System.out.println("Invalid position!");
+            return;
+        }
+        if(position == 1){
+            deleteHead();
+            return;
+        }
+        if(position == size){
+            deleteTail();
+            return; 
+        }
+
+        Node prevNode = head;
+        for (int i = 1; i <= position - 2; i++) {
+            prevNode = prevNode.next;
+        }
+
+        Node currNode = prevNode.next;
+
+        prevNode.next = currNode.next;
+        currNode.next = null;
+
+        size--;
+    }
+
     public boolean search(int target) {
-        if (size == 0) {
+        if (isEmpty()) {
             System.out.println("empty linked list!");
             return false;
         }
@@ -163,7 +191,35 @@ public class CircularLinkedList {
         return false;
     }
 
-    public static void main(String[] args) {
+    public int getSize(){
+        return size;
+    }
 
+    public boolean isEmpty(){
+        return size == 0;
+    }
+
+    public int getHead(){
+        if(head == null){
+           throw new IllegalStateException("Head is empty!!");
+        }
+        return head.data;
+    }
+
+    public int getTail(){
+        if(tail == null){
+            throw new IllegalStateException("Tail is empty!!");
+        }
+        return tail.data;
+    }
+
+    public static void main(String[] args) {
+        CircularLinkedList list = new CircularLinkedList();
+
+        list.insertAtHead(30);
+        list.insertAtHead(40);
+        list.insertAtHead(50);
+
+        list.printList();
     }
 }
