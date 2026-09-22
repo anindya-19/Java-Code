@@ -98,6 +98,34 @@ public class CircularDoublyLinkedList {
         size++;
     }
 
+    public void printForward() {
+        if (isEmpty()) {
+            System.out.println("Linked list is empty!!");
+            return;
+        }
+        Node temp = head;
+
+        do {
+            System.out.print(temp.data + "<->");
+            temp = temp.next;
+        } while (temp != head);
+        System.out.println("(back to head)");
+    }
+
+    public void printBackward() {
+        if (isEmpty()) {
+            System.out.println("Empty linked list!!");
+            return;
+        }
+        Node temp = tail;
+
+        do {
+            System.out.print(temp.data + "<->");
+            temp = temp.prev;
+        } while (temp != tail);
+        System.out.println("(back to tail)");
+    }
+
     public static void main(String[] args) {
 
     }
