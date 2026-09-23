@@ -246,6 +246,12 @@ public class CircularDoublyLinkedList {
     }
 
     public static void main(String[] args) {
+        CircularDoublyLinkedList list = new CircularDoublyLinkedList();
 
+        list.insertAtHead(25);
+        list.insertAtHead(35);
+        list.insertAtHead(10);
+        list.insertAtHead(15);
+        list.printForward();
     }
 }
