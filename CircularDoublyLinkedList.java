@@ -126,6 +126,42 @@ public class CircularDoublyLinkedList {
         System.out.println("(back to tail)");
     }
 
+    public boolean search(int target) {
+        if (isEmpty()) {
+            System.out.println("Linked list is empty!!");
+            return false;
+        }
+
+        Node current = head;
+        do {
+
+            if (current.data == target) {
+                return true;
+            }
+            current = current.next;
+
+        } while (current != head);
+        return false;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getHead() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Empty Linked list!!");
+        }
+        return head.data;
+    }
+
+    public int getTail() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Linked list is empty!!");
+        }
+        return tail.data;
+    }
+
     public static void main(String[] args) {
 
     }
