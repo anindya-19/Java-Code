@@ -162,6 +162,89 @@ public class CircularDoublyLinkedList {
         return tail.data;
     }
 
+    public void deleteHead() {
+        if (isEmpty()) {
+            System.out.println("Empty Linked List!!");
+            return;
+        }
+        if (size == 1) {
+            head = null;
+            tail = null;
+            size = 0;
+            return;
+        }
+
+        Node temp = head;
+        head = head.next;
+
+        temp.next = null;
+        temp.prev = null;
+
+        tail.next = head;
+        head.prev = tail;
+
+        size--;
+    }
+
+    public void deleteTail() {
+        if (isEmpty()) {
+            System.out.println("The linked list is empty!");
+            return;
+        }
+        if (size == 1) {
+            head = null;
+            tail = null;
+            size = 0;
+            return;
+        }
+
+        Node prevNode = tail.prev;
+
+        tail.prev = null;
+        tail.next = null;
+
+        tail = prevNode;
+
+        head.prev = tail;
+        tail.next = head;
+
+        size--;
+    }
+
+    public void deleteAtPosition(int position) {
+        if (isEmpty()) {
+            System.out.println("Empty linked list!!");
+            return;
+        }
+        if (position < 1 || position > size) {
+            System.out.println("Invalid position!");
+            return;
+        }
+        if (position == 1) {
+            deleteHead();
+            return;
+        }
+        if (position == size) {
+            deleteTail();
+            return;
+        }
+
+        Node prevNode = head;
+        for (int i = 1; i <= position - 2; i++) {
+            prevNode = prevNode.next;
+        }
+        Node currNode = prevNode.next;
+        Node nextNode = currNode.next;
+
+        currNode.next = null;
+        currNode.prev = null;
+
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
+
+        size--;
+    }
+
     public static void main(String[] args) {
 
     }
