@@ -1,72 +1,57 @@
-# Java Data Structures
+# Java Data Structures and Algorithms
 
-Small, standalone Java exercises covering arrays and linked lists. The project
-currently contains an implemented singly linked list, an array-reversal
-example, and the initial structure of a doubly linked list.
+A collection of standalone Java examples for practicing data structures and
+algorithms. Each source file contains a small demonstration in its `main`
+method. The examples use primitive `int` values and do not require external
+dependencies.
 
 ## Contents
 
-| File | Description | Status |
-| --- | --- | --- |
-| `singlyLinkedList.java` | Integer singly linked list with insertion, search, update, deletion, and display operations. | Implemented |
-| `reverseArray.java` | Reverses an integer array in place with a two-pointer approach. | Implemented |
-| `DoublyLinkedList.java` | Defines a doubly linked-list node and list state (`head`, `tail`, and `size`). | In progress |
+| File | Description |
+| --- | --- |
+| `singlyLinkedList.java` | Singly linked list with insertion, search, update, deletion, and display operations. |
+| `DoublyLinkedList.java` | Doubly linked list with forward/backward traversal, insertion, search, update, and deletion. |
+| `CircularLinkedList.java` | Circular singly linked list with insertion, search, deletion, and head/tail access. |
+| `CircularDoublyLinkedList.java` | Circular doubly linked list with forward/backward traversal, insertion, search, and deletion. |
+| `SortingAlgorithms.java` | Bubble sort, insertion sort, and selection sort. |
+| `QuickSort.java` | Quick sort. |
+| `MergeSort.java` | Merge sort. |
+| `SearchingAlgo.java` | Linear search and binary search. |
+| `reverseArray.java` | Reverses an integer array in place. |
 
 ## Requirements
 
-- Java Development Kit (JDK) 8 or later
+- JDK 8 or later
 - A terminal or Java-capable IDE
 
-These files do not declare a package, so they can be compiled directly from
-the project directory.
+The classes do not declare packages, so compile and run them from the project
+directory.
 
 ## Compile
 
-From the project directory, run:
+Compile all examples with:
 
 ```bash
-javac singlyLinkedList.java reverseArray.java DoublyLinkedList.java
+javac *.java
 ```
 
-This creates `.class` files in the same directory. They are build artifacts
-and are not part of the source code.
+This creates `.class` files in the project directory.
 
-## Run the examples
+## Run an example
 
-Run the singly linked-list demonstration:
+Run any example by passing its class name to `java`, for example:
 
 ```bash
 java singlyLinkedList
-```
-
-Run the array-reversal demonstration:
-
-```bash
+java DoublyLinkedList
+java CircularLinkedList
+java CircularDoublyLinkedList
+java SortingAlgorithms
+java QuickSort
+java MergeSort
+java SearchingAlgo
 java reverseArray
 ```
 
-`DoublyLinkedList` currently has an empty `main` method and does not yet
-demonstrate list operations.
-
-## Singly linked-list operations
-
-The `singlyLinkedList` class stores integer values and provides:
-
-- Insert at the head, tail, or a one-based position
-- Check whether the list is empty and retrieve its size
-- Read the head and tail values
-- Search for a value or find its one-based position
-- Update a value at a position, every matching value, or the first match
-- Delete the head, tail, a one-based position, or the first matching value
-- Print the list in `value->value->NULL` format
-
-Invalid positions are reported to standard output. Reading the head or tail
-of an empty list returns `-1` after printing a message.
-
-## Notes
-
-- The source uses the existing class names, including the lowercase
-	`singlyLinkedList` name.
-- `DoublyLinkedList.java` is scaffolding for future implementation; its
-	constructor and node fields are package-private.
-- The examples use primitive `int` values rather than generics.
+`SearchingAlgo.binarySearch` expects the input array to be sorted. The sorting
+examples modify their input arrays in place.
