@@ -3,7 +3,7 @@ public class StackUsingArray {
     static class MyStack {
 
         // private data members
-        private int arr[];
+        private int[] arr;
         private int capacity;
         private int top;
 
@@ -53,13 +53,23 @@ public class StackUsingArray {
                 return true;
             return false;
         }
+
+        public void printStack() {
+            while (!checkEmpty()) {
+                IO.println(peek());
+                pop();
+            }
+        }
     }
 
     public static void main(String[] args) {
         MyStack st = new MyStack(10);
         st.push(10);
-        st.push(10);
+        st.push(20);
+        st.push(30);
+        st.push(40);
 
-        System.out.println("The size of the stack is: " + st.getSize());
+        IO.println("The size of the stack is: " + st.getSize());
+        st.printStack();
     }
 }
